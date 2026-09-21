@@ -1,0 +1,6 @@
+@P2P.ApiAgent_HostAddress = http://localhost:5256
+
+GET {{P2P.ApiAgent_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
