@@ -20,7 +20,7 @@ namespace P2P.AgentApi.Entities
 
         public Vendor Vendor { get; private set; } = null!;
 
-        public ICollection<POLineItem> LineItems { get; private set; } = [];
+        public ICollection<POLineItem> POLineItems { get; private set; } = [];
 
         public ICollection<GoodsReceipt> GoodsReceipts { get; private set; } = [];
 

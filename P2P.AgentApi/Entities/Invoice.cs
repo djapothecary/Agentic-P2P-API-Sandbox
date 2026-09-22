@@ -29,5 +29,29 @@ namespace P2P.AgentApi.Entities
         public PurchaseOrder PurchaseOrder { get; private set; } = null!;
 
         public ICollection<GLEntry> GLEntries { get; private set; } = [];
+
+        public void MarkMatches()
+        {
+            if (Status != InvoiceStatus.PENDING)
+            {
+                throw new InvalidOperationException(
+                    "Only pending invoices can be matched."
+                );
+            }
+
+            Status = InvoiceStatus.MATCHED;
+        }
+
+        public void Approve()
+        {
+            if (Status != InvoiceStatus.MATCHED)
+            {
+                throw new InvalidOperationException(
+                    "Only matched invoices can be approved."
+                );
+            }
+
+            Status = InvoiceStatus.APPROVED;
+        }
     }
 }

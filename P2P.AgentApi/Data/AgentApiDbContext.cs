@@ -1,3 +1,4 @@
+using System.Dynamic;
 using System.Formats.Tar;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ namespace P2P.AgentApi.Data
     {
         public DbSet<GLEntry> GLEntries => Set<GLEntry>();
         public DbSet<GoodsReceipt> GoodsReceipts => Set<GoodsReceipt>();
+        public DbSet<GoodsReceiptLine> GoodsReceiptLines => Set<GoodsReceiptLine>();
         public DbSet<Invoice> Invoices => Set<Invoice>();
         public DbSet<POLineItem> POLineItems => Set<POLineItem>();
         public DbSet<PurchaseOrder> PurchaseOrders => Set<PurchaseOrder>();
@@ -39,7 +41,7 @@ namespace P2P.AgentApi.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<PurchaseOrder>()
-                .HasMany(po => po.LineItems)
+                .HasMany(po => po.POLineItems)
                 .WithOne(lineItem => lineItem.PurchaseOrder)
                 .HasForeignKey(lineItem => lineItem.PurchaseOrderId)
                 .OnDelete(DeleteBehavior.Cascade);
@@ -56,6 +58,18 @@ namespace P2P.AgentApi.Data
                 .HasForeignKey(invoice => invoice.PurchaseOrderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<GoodsReceipt>()
+                .HasMany(receipt => receipt.Lines)
+                .WithOne(line => line.GoodsReceipt)
+                .HasForeignKey(line => line.GoodsReceiptId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<GoodsReceiptLine>()
+                .HasOne(line => line.POLineItem)
+                .WithMany()
+                .HasForeignKey(line => line.POLineItemId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<Invoice>()
                 .HasMany(invoice => invoice.GLEntries)
                 .WithOne(glEntry => glEntry.Invoice)
@@ -69,10 +83,6 @@ namespace P2P.AgentApi.Data
 
             builder.Entity<POLineItem>()
                 .Property(lineItem => lineItem.UnitCost)
-                .HasPrecision(18, 2);
-
-            builder.Entity<GoodsReceipt>()
-                .Property(receipt => receipt.UnitCost)
                 .HasPrecision(18, 2);
 
             builder.Entity<GLEntry>()

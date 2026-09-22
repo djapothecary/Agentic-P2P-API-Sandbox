@@ -20,6 +20,9 @@ namespace P2P.AgentApi.Entities
         [Column("qty_ordered")]
         public int QuantityOrdered { get; private set; }
 
+        [Column("qty_received")]
+        public int QuantityReceived { get; private set; }
+
         [Column("unit_cost")]
         public decimal UnitCost { get; private set; }
 
