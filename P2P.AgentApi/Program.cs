@@ -25,7 +25,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
-//  TODO:   Add Endpoints here
+//  Custom Endpoints
 app.MapPurchaseOrderEndpoints();
 app.MapInvoiceEndpoints();
 app.MapGeneralLedgerEndpoints();
