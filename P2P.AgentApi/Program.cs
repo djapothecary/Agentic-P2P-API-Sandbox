@@ -1,8 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using P2P.AgentApi.Data;
+using P2P.AgentApi.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddOpenApi();
+
+//  Database configuration
+builder.Services.AddDbContext<AgentApiDbContext>(options =>
+    options.UseInMemoryDatabase("EciP2P_Database")
+);
 
 var app = builder.Build();
 
@@ -12,6 +21,13 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
+
+//  TODO:   Add Endpoints here
+app.MapPurchaseOrderEndpoints();
+app.MapInvoiceEndpoints();
+app.MapGeneralLedgerEndpoints();
 
 app.Run();
