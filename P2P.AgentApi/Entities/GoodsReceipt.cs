@@ -24,6 +24,8 @@ namespace P2P.AgentApi.Entities
         public int QuantityReceived { get; init; }
 
         [Column("unit_cost")]
-        public double UnitCost { get; init; }
+        public decimal UnitCost { get; init; }
+
+        public PurchaseOrder PurchaseOrder { get; init; } = null!;
     }
 }

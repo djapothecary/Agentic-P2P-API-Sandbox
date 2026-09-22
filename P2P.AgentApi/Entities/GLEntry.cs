@@ -15,12 +15,14 @@ namespace P2P.AgentApi.Entities
         public string AccountCode { get; init; } = string.Empty;
 
         [Column("debit")]
-        public double Debit { get; init; }
+        public decimal Debit { get; init; }
 
         [Column("credit")]
-        public double Credit { get; init; }
+        public decimal Credit { get; init; }
 
         [Column("posted_at")]
         public DateTime PostedAt { get; init; }
+
+        public Invoice Invoice { get; init; } = null!;
     }
 }

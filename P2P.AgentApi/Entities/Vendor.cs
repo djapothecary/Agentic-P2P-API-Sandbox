@@ -17,5 +17,9 @@ namespace P2P.AgentApi.Entities
 
         [Column("is_active")]
         public bool IsActive { get; init; }
+
+        public ICollection<PurchaseOrder> Purchaseorders { get; init; } = new List<PurchaseOrder>();
+
+        public ICollection<Invoice> Invoices { get; init; } = new List<Invoice>();
     }
 }

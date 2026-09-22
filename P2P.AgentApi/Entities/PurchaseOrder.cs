@@ -22,5 +22,13 @@ namespace P2P.AgentApi.Entities
 
         [Column("created_at")]
         public DateTime CreatedAt { get; init; }
+
+        public Vendor Vendor { get; init; } = null!;
+
+        public ICollection<POLineItem> LineItemEntities { get; init; } = new List<POLineItem>();
+
+        public ICollection<GoodsReceipt> GoodsReceipts { get; init; } = new List<GoodsReceipt>();
+
+        public ICollection<Invoice> Invoices { get; init; } = new List<Invoice>();
     }
 }
