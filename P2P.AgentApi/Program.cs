@@ -15,6 +15,16 @@ builder.Services.AddDbContext<AgentApiDbContext>(options =>
 
 var app = builder.Build();
 
+//  Seed Database
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var db = scope
+        .ServiceProvider
+        .GetRequiredService<AgentApiDbContext>();
+
+    await DataSeeder.SeedAsync(db);
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

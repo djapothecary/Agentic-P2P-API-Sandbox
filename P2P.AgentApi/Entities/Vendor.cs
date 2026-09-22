@@ -21,5 +21,22 @@ namespace P2P.AgentApi.Entities
         public ICollection<PurchaseOrder> PurchaseOrders { get; private set; } = [];
 
         public ICollection<Invoice> Invoices { get; private set; } = [];
+
+        //  Constructor/Factory
+        public Vendor(
+            string name,
+            PaymentTerms paymentTerms,
+            bool isActive = true
+        )
+        {
+            Name = name;
+            PaymentTerms = paymentTerms;
+            IsActive = isActive;
+        }
+
+        private Vendor()
+        {
+            //  Required by EF Core
+        }
     }
 }

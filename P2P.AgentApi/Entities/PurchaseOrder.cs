@@ -25,5 +25,21 @@ namespace P2P.AgentApi.Entities
         public ICollection<GoodsReceipt> GoodsReceipts { get; private set; } = [];
 
         public ICollection<Invoice> Invoices { get; private set; } = [];
+
+        //  Constructor/Factory
+        public PurchaseOrder(
+            int vendorId,
+            DateTime? createdAt = null
+        )
+        {
+            VendorId = vendorId;
+            CreatedAt = createdAt ?? DateTime.UtcNow;
+            Status = PurchaseOrderStatus.DRAFT;
+        }
+
+        private PurchaseOrder()
+        {
+            //  Required by EF Core
+        }
     }
 }

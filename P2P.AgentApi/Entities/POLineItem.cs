@@ -27,5 +27,25 @@ namespace P2P.AgentApi.Entities
         public decimal UnitCost { get; private set; }
 
         public PurchaseOrder PurchaseOrder { get; private set; } = null!;
+
+        //  Constructor/Factory
+        public POLineItem(
+            string sku,
+            string description,
+            int quantityOrdered,
+            decimal unitCost
+        )
+        {
+            Sku = sku;
+            Description = description;
+            QuantityOrdered = quantityOrdered;
+            QuantityReceived = 0;
+            UnitCost = unitCost;
+        }
+
+        private POLineItem()
+        {
+            //  Required by EF Core
+        }
     }
 }
