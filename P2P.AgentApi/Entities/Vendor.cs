@@ -7,19 +7,19 @@ namespace P2P.AgentApi.Entities
     public class Vendor
     {
         [Key]
-        public int Id { get; init; }
+        public int Id { get; private set; }
 
         [Column("name")]
-        public string Name { get; init; } = string.Empty;
+        public string Name { get; private set; } = string.Empty;
 
         [Column("payment_terms")]
-        public PaymentTerms PaymentTerms { get; init; } = PaymentTerms.NONE;
+        public PaymentTerms PaymentTerms { get; private set; } = PaymentTerms.NONE;
 
         [Column("is_active")]
-        public bool IsActive { get; init; }
+        public bool IsActive { get; private set; }
 
-        public ICollection<PurchaseOrder> Purchaseorders { get; init; } = new List<PurchaseOrder>();
+        public ICollection<PurchaseOrder> PurchaseOrders { get; private set; } = [];
 
-        public ICollection<Invoice> Invoices { get; init; } = new List<Invoice>();
+        public ICollection<Invoice> Invoices { get; private set; } = [];
     }
 }

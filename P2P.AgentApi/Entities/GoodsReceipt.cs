@@ -6,26 +6,19 @@ namespace P2P.AgentApi.Entities
     public class GoodsReceipt
     {
         [Key]
-        public int Id { get; init; }
+        public int Id { get; private set; }
 
         [Column("po_id")]
-        public int PurchaseOrderId { get; init; }
+        public int PurchaseOrderId { get; private set; }
 
-        [Column("sku")]
-        public string Sku { get; init; } = string.Empty;
+        [Column("received_by")]
+        public string ReceivedBy { get; private set; } = string.Empty;
 
-        [Column("description")]
-        public string Description { get; init; } = string.Empty;
+        [Column("received_at")]
+        public DateTime ReceivedAt { get; private set; }
 
-        [Column("qty_ordered")]
-        public int QuantityOrdered { get; init; }
+        public PurchaseOrder PurchaseOrder { get; private set; } = null!;
 
-        [Column("qtyreceived")]
-        public int QuantityReceived { get; init; }
-
-        [Column("unit_cost")]
-        public decimal UnitCost { get; init; }
-
-        public PurchaseOrder PurchaseOrder { get; init; } = null!;
+        public ICollection<GoodsReceiptLine> Lines { get; private set; } = new List<GoodsReceiptLine>();
     }
 }

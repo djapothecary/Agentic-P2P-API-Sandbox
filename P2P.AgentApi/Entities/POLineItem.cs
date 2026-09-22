@@ -6,23 +6,23 @@ namespace P2P.AgentApi.Entities
     public class POLineItem
     {
         [Key]
-        public int Id { get; init; }
+        public int Id { get; private set; }
 
         [Column("po_id")]
-        public int PurchaseOrderId { get; init; }
+        public int PurchaseOrderId { get; private set; }
 
         [Column("sku")]
-        public string Sku { get; init; } = string.Empty;
+        public string Sku { get; private set; } = string.Empty;
 
         [Column("description")]
-        public string Description { get; init; } = string.Empty;
+        public string Description { get; private set; } = string.Empty;
 
         [Column("qty_ordered")]
-        public int QuantityOrdered { get; init; }
+        public int QuantityOrdered { get; private set; }
 
         [Column("unit_cost")]
-        public decimal UnitCost { get; init; }
+        public decimal UnitCost { get; private set; }
 
-        public PurchaseOrder PurchaseOrder { get; init; } = null!;
+        public PurchaseOrder PurchaseOrder { get; private set; } = null!;
     }
 }

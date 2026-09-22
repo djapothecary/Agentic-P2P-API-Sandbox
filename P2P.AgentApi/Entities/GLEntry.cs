@@ -6,23 +6,23 @@ namespace P2P.AgentApi.Entities
     public class GLEntry
     {
         [Key]
-        public int Id { get; init; }
+        public int Id { get; private set; }
 
         [Column("invoice_id")]
-        public int InvoiceId { get; init; }
+        public int InvoiceId { get; private set; }
 
         [Column("account_code")]
-        public string AccountCode { get; init; } = string.Empty;
+        public string AccountCode { get; private set; } = string.Empty;
 
         [Column("debit")]
-        public decimal Debit { get; init; }
+        public decimal Debit { get; private set; }
 
         [Column("credit")]
-        public decimal Credit { get; init; }
+        public decimal Credit { get; private set; }
 
         [Column("posted_at")]
-        public DateTime PostedAt { get; init; }
+        public DateTime PostedAt { get; private set; }
 
-        public Invoice Invoice { get; init; } = null!;
+        public Invoice Invoice { get; private set; } = null!;
     }
 }

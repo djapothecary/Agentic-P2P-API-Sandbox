@@ -7,28 +7,23 @@ namespace P2P.AgentApi.Entities
     public class PurchaseOrder
     {
         [Key]
-        public int Id { get; init; }
+        public int Id { get; private set; }
 
         [Column("vendor_id")]
-        public string VendorId { get; init; } = string.Empty;
+        public int VendorId { get; private set; }
 
         [Column("status")]
-        public PurchaseOrderStatus Status { get; init; } = PurchaseOrderStatus.DRAFT;
-
-        //  Becareful here!! this could be a string of multiple items comma seperated
-        //  Be sure to split this into a list as needed
-        [Column("line_items")]
-        public string LineItems { get; init; } = string.Empty;
+        public PurchaseOrderStatus Status { get; private set; } = PurchaseOrderStatus.DRAFT;
 
         [Column("created_at")]
-        public DateTime CreatedAt { get; init; }
+        public DateTime CreatedAt { get; private set; }
 
-        public Vendor Vendor { get; init; } = null!;
+        public Vendor Vendor { get; private set; } = null!;
 
-        public ICollection<POLineItem> LineItemEntities { get; init; } = new List<POLineItem>();
+        public ICollection<POLineItem> LineItems { get; private set; } = [];
 
-        public ICollection<GoodsReceipt> GoodsReceipts { get; init; } = new List<GoodsReceipt>();
+        public ICollection<GoodsReceipt> GoodsReceipts { get; private set; } = [];
 
-        public ICollection<Invoice> Invoices { get; init; } = new List<Invoice>();
+        public ICollection<Invoice> Invoices { get; private set; } = [];
     }
 }
