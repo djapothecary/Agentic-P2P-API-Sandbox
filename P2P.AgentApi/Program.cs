@@ -40,4 +40,7 @@ app.MapPurchaseOrderEndpoints();
 app.MapInvoiceEndpoints();
 app.MapGeneralLedgerEndpoints();
 
+//  Troubleshooting Endpoints
+app.MapRawAPIEndpoint();
+
 app.Run();
