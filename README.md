@@ -16,8 +16,8 @@ dotnet run
 ## 🧪 Testing the Agent Interface
 
 This API is self-documenting for agentic ingestion. Once running, navigate to:
-* **Swagger UI (Human Testing):** `http://localhost:<port>/swagger`
-* **OpenAPI Spec (Agent Ingestion):** `http://localhost:<port>/swagger/v1/swagger.json`
+* **Swagger UI (Human Testing):** `http://localhost:5256/swagger`
+* **OpenAPI Spec (Agent Ingestion):** `http://localhost:5256/swagger/v1/swagger.json`
 
 ## 📦 Data Seeding
 The EF Core In-Memory database automatically seeds on startup with:
