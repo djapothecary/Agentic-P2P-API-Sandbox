@@ -1,0 +1,30 @@
+{
+  "configurations": [
+    {
+      "name": ".NET Core Launch (Minimal API)",
+      "type": "coreclr",
+      "request": "launch",
+      //"preLaunchTask": "build",
+      "program": "${workspaceFolder}/P2P.AgentApi/bin/Debug/net10.0/P2P.AgentApi.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5256"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "Now listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
+      }
+    },
+    {
+      "name": "C#: P2P.AgentApi Debug",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/P2P.AgentApi/P2P.AgentApi.csproj"
+    }
+  ]
+}
