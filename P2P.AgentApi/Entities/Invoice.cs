@@ -7,28 +7,28 @@ namespace P2P.AgentApi.Entities
     public class Invoice
     {
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Column("vendor_id")]
-        public int VendorId { get; private set; }
+        public int VendorId { get; set; }
 
         [Column("po_id")]
-        public int PurchaseOrderId { get; private set; }
+        public int PurchaseOrderId { get; set; }
 
         [Column("invoice_number")]
-        public string InvoiceNumber { get; private set; } = string.Empty;
+        public string InvoiceNumber { get; set; } = string.Empty;
 
         [Column("amount")]
-        public decimal Amount { get; private set; }
+        public decimal Amount { get; set; }
 
         [Column("status")]
-        public InvoiceStatus Status { get; private set; } = InvoiceStatus.PENDING;
+        public InvoiceStatus Status { get; set; } = InvoiceStatus.PENDING;
 
-        public Vendor Vendor { get; private set; } = null!;
+        public Vendor Vendor { get; set; } = null!;
 
-        public PurchaseOrder PurchaseOrder { get; private set; } = null!;
+        public PurchaseOrder PurchaseOrder { get; set; } = null!;
 
-        public ICollection<GLEntry> GLEntries { get; private set; } = [];
+        public ICollection<GLEntry> GLEntries { get; set; } = [];
 
         public void MarkMatches()
         {

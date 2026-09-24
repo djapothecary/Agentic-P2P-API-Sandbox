@@ -22,6 +22,8 @@ namespace P2P.AgentApi.Entities
 
         public ICollection<Invoice> Invoices { get; private set; } = [];
 
+        public VendorCategory Category { get; set; }
+
         //  Constructor/Factory
         public Vendor(
             string name,

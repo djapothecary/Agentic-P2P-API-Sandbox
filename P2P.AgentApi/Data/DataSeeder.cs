@@ -150,6 +150,8 @@ namespace P2P.AgentApi.Data
                 usukaniOrder,
                 yokomoOrder
             );
+
+            await db.SaveChangesAsync(cancellationToken);
         }
     }
 }

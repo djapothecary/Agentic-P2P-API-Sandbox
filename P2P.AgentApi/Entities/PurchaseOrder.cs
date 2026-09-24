@@ -7,24 +7,24 @@ namespace P2P.AgentApi.Entities
     public class PurchaseOrder
     {
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Column("vendor_id")]
-        public int VendorId { get; private set; }
+        public int VendorId { get; set; }
 
         [Column("status")]
-        public PurchaseOrderStatus Status { get; private set; } = PurchaseOrderStatus.DRAFT;
+        public PurchaseOrderStatus Status { get; set; } = PurchaseOrderStatus.DRAFT;
 
         [Column("created_at")]
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; set; }
 
-        public Vendor Vendor { get; private set; } = null!;
+        public Vendor Vendor { get; set; } = null!;
 
-        public ICollection<POLineItem> POLineItems { get; private set; } = [];
+        public ICollection<POLineItem> POLineItems { get; set; } = [];
 
-        public ICollection<GoodsReceipt> GoodsReceipts { get; private set; } = [];
+        public ICollection<GoodsReceipt> GoodsReceipts { get; set; } = [];
 
-        public ICollection<Invoice> Invoices { get; private set; } = [];
+        public ICollection<Invoice> Invoices { get; set; } = [];
 
         //  Constructor/Factory
         public PurchaseOrder(
@@ -37,7 +37,7 @@ namespace P2P.AgentApi.Entities
             Status = PurchaseOrderStatus.DRAFT;
         }
 
-        private PurchaseOrder()
+        public PurchaseOrder()
         {
             //  Required by EF Core
         }
