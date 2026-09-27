@@ -18,76 +18,7 @@ namespace P2P.AgentApi.Endpoints
                 AgentApiDbContext db
             ) =>
             {
-                if (request.Lines is null || request.Lines.Count == 0)
-                {
-                    return Results.Problem(
-                        statusCode: StatusCodes.Status400BadRequest,
-                        title: "Invalid purchase order",
-                        detail: "At least one purchase-order line is required.");
-                }
 
-                if (request.Lines.Any(line =>
-                        string.IsNullOrWhiteSpace(line.Sku) ||
-                        line.QuantityOrdered <= 0 ||
-                        line.UnitCost < 0))
-                {
-                    return Results.Problem(
-                        statusCode: StatusCodes.Status400BadRequest,
-                        title: "Invalid purchase-order line",
-                        detail: "Each line must have an SKU, a positive quantity, and a non-negative unit cost.");
-                }
-
-                var vendor = await db.Vendors
-                    .SingleOrDefaultAsync(vendor => vendor.Id == request.VendorId);
-
-                if (vendor is null)
-                {
-                    return Results.Problem(
-                        statusCode: StatusCodes.Status404NotFound,
-                        title: "Vendor not found",
-                        detail: $"Vendor {request.VendorId} was not found.");
-                }
-
-                if (!vendor.IsActive)
-                {
-                    return Results.Problem(
-                        statusCode: StatusCodes.Status422UnprocessableEntity,
-                        title: "Inactive vendor",
-                        detail: "Inactive vendors cannot have new purchase orders.");
-                }
-
-                var purchaseOrder = new PurchaseOrder(request.VendorId);
-
-                foreach (var line in request.Lines)
-                {
-                    purchaseOrder.POLineItems.Add(new POLineItem(
-                        line.Sku,
-                        line.Description,
-                        line.QuantityOrdered,
-                        line.UnitCost));
-                }
-
-                db.PurchaseOrders.Add(purchaseOrder);
-                await db.SaveChangesAsync();
-
-                return Results.Created(
-                    $"/purchase-orders/{purchaseOrder.Id}",
-                    new
-                    {
-                        purchaseOrder.Id,
-                        purchaseOrder.VendorId,
-                        purchaseOrder.Status,
-                        purchaseOrder.CreatedAt,
-                        Lines = purchaseOrder.POLineItems.Select(line => new
-                        {
-                            line.Id,
-                            line.Sku,
-                            line.Description,
-                            line.QuantityOrdered,
-                            line.QuantityReceived,
-                            line.UnitCost
-                        })
-                    });
 
             });
 
